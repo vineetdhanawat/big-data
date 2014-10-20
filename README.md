@@ -1,5 +1,5 @@
 # Big Data Analytics and Management
-Assignments include Map Reduce Jobs using Hadoop
+Assignments include Map Reduce Jobs using Hadoop. Coursework CS 6301
 
 ## Assignments
 ### HW1
