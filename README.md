@@ -16,6 +16,8 @@ Implement several map reduce design patterns to derive some statistics from IMDB
 5. Find the top 10 zipcodes based on the average age of users belong to that zipcode, in the ascending order of the average age.
 
 ### Map Reduce Joins
+1. Given a movieID as input, Find the number of male users who has rated that movie using map side join.
+2. Find top 10 average rated movie names with descending order of rating using reduce side join.
 
 ## License
 
