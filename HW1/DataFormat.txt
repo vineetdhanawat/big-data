@@ -1,8 +1,0 @@
-ratings.dat format
-UserID::MovieID::Rating::Timestamp
-
-users.dat format
-UserID::Gender::Age::Occupation::Zip-code
-
-movies.dat format
-MovieID::Title::Genres
