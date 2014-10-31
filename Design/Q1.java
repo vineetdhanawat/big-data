@@ -1,5 +1,6 @@
-import java.io.IOException;
+// Parameters users.dat output 55455
 
+import java.io.IOException;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.conf.*;
 import org.apache.hadoop.io.*;

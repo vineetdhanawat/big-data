@@ -1,5 +1,6 @@
-import java.io.IOException;
+// Parameters ratings.dat output 30
 
+import java.io.IOException;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.conf.*;
 import org.apache.hadoop.io.*;
