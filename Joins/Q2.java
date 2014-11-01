@@ -22,7 +22,7 @@ public class Q2 {
             String[] tokens = line.split("\\::");
             movie.set(tokens[1]);
             rating.set(Integer.parseInt(tokens[2]));
-            context.write(movie, rating); // <movieID, rating) key value pair
+            context.write(movie, rating); // <movieID, rating> key value pair
         }
 	}
 
