@@ -18,6 +18,7 @@ Implement several map reduce design patterns to derive some statistics from IMDB
 ### Map Reduce Joins
 1. Given a movieID as input, Find the number of male users who has rated that movie using map side join.
 2. Find top 10 average rated movie names with descending order of rating using reduce side join.
+3. Find the top 10 users (userID, age, gender) who has rated most number of movies in descending order of the counts.
 
 ## License
 
