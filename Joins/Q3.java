@@ -1,4 +1,4 @@
-package HW2;
+// Parameters ratings.dat temp users.dat output
 
 import java.io.BufferedReader;
 import java.io.FileReader;
