@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS movieyear;
+DROP TABLE IF EXISTS movies_2009;
+DROP TABLE IF EXISTS movies_2010;
+DROP TABLE IF EXISTS movies_2011;
+
+CREATE TABLE movieyear (MovieID INT, Title STRING, Genres STRING) partitioned by (Year_partition INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043';
+
+CREATE TABLE movies_2009 (MovieID INT, Title STRING, Genres STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043';
+CREATE TABLE movies_2010 (MovieID INT, Title STRING, Genres STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043';
+CREATE TABLE movies_2011 (MovieID INT, Title STRING, Genres STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043';
+
+LOAD DATA local INPATH '/Fall2014/2009' OVERWRITE INTO TABLE movieyear Partition (Year_partition = 2009);
+LOAD DATA local INPATH '/Fall2014/2010' OVERWRITE INTO TABLE movieyear Partition (Year_partition = 2010);
+LOAD DATA local INPATH '/Fall2014/2011' OVERWRITE INTO TABLE movieyear Partition (Year_partition = 2011);
+
+FROM movieyear 
+
+INSERT OVERWRITE TABLE movies_2009 
+SELECT MovieID, Title, Genres 
+WHERE Year_partition =2009 
+
+INSERT OVERWRITE TABLE movies_2010 
+SELECT MovieID, Title, Genres 
+WHERE Year_partition =2010 
+
+INSERT OVERWRITE TABLE movies_2011 
+SELECT MovieID, Title, Genres 
+WHERE Year_partition =2011;
+
+SELECT * from movies_2009;
+SELECT * from movies_2010;
+SELECT * from movies_2011;

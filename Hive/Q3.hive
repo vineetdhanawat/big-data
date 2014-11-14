@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS movieyear;
+
+CREATE TABLE movieyear (MovieID INT, Title STRING, Genres STRING) partitioned by (Year_partition INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043';
+
+LOAD DATA local INPATH '/Fall2014/2009' OVERWRITE INTO TABLE movieyear Partition (Year_partition = 2009);
+LOAD DATA local INPATH '/Fall2014/2010' OVERWRITE INTO TABLE movieyear Partition (Year_partition = 2010);
+LOAD DATA local INPATH '/Fall2014/2011' OVERWRITE INTO TABLE movieyear Partition (Year_partition = 2011);
+
+SELECT * FROM movieyear WHERE Year_partition=2009;

@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS Movies;
+DROP TABLE IF EXISTS Ratings;
+DROP TABLE IF EXISTS Users;
+
+CREATE TABLE Movies (movie_id INT, title STRING, genre STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043' LINES TERMINATED BY '\n';
+CREATE TABLE Ratings (user_id INT, movie_id INT, rating INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043' LINES TERMINATED BY '\n';
+CREATE TABLE Users (userid BIGINT, gender STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INPATH '/Fall2014/movies_new.dat' OVERWRITE INTO TABLE Movies;
+LOAD DATA LOCAL INPATH '/Fall2014/ratings_new.dat' OVERWRITE INTO TABLE Ratings;
+LOAD DATA LOCAL INPATH '/Fall2014/users_new.dat' OVERWRITE INTO TABLE Users;
+
+SELECT m.title, m.genre 
+FROM Movies m JOIN Ratings r 
+on m.movie_id = r.movie_id JOIN Users u 
+on r.user_id = u.userid and u.gender like '%M%' 
+WHERE (m.genre like '%Action%' or m.genre like '%Drama%') 
+GROUP BY m.title, m.genre 
+HAVING avg(r.rating) > 4.4 and avg(r.rating) < 4.9;

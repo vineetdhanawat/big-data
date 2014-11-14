@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS Movies;
+DROP TABLE IF EXISTS Ratings;
+
+CREATE TABLE Movies (movie_id INT, title STRING, genre STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043' LINES TERMINATED BY '\n';
+CREATE TABLE Ratings (user_id INT, movie_id INT, rating INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\043' LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INPATH '/Fall2014/movies_new.dat' OVERWRITE INTO TABLE Movies;
+LOAD DATA LOCAL INPATH '/Fall2014/ratings_new.dat' OVERWRITE INTO TABLE Ratings;
+
+SELECT Movies.movie_id, AVG(Ratings.rating) avg_rating, Movies.title 
+FROM Movies JOIN Ratings ON (Movies.movie_id = Ratings.movie_id AND Movies.genre LIKE '%Action%' )  
+GROUP BY Movies.movie_id, Movies.title 
+ORDER BY avg_rating DESC
+LIMIT 11;
