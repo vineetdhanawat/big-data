@@ -1,0 +1,13 @@
+{cs6360:~} /usr/local/apache-cassandra-2.0.5/bin/cqlsh csac0
+
+DROP KEYSPACE ID;
+CREATE KEYSPACE ID WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+USE ID; 
+
+CREATE TABLE movies ( movieID int PRIMARY KEY, title varchar, genres varchar); 
+
+COPY movies FROM '/tmp/Fall2014_HW-3_Hive/movies_new.dat' WITH DELIMITER = '#';
+INSERT INTO movies (movieID, title, genres) VALUES (1162, 'New Comedy Movie', 'Comedy');
+SELECT * FROM movies WHERE movieID = 1150;
+TRUNCATE movies;
+DROP TABLE movies;

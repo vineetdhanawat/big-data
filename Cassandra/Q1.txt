@@ -1,0 +1,29 @@
+{cs6360:~} /usr/local/apache-cassandra-2.0.5/bin/cassandra-cli --host csac0
+
+DROP KEYSPACE ID;
+CREATE KEYSPACE ID with placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy' and strategy_options = {replication_factor:1};
+
+USE ID; 
+
+CREATE COLUMN FAMILY movies WITH comparator = UTF8Type AND key_validation_class=UTF8Type AND column_metadata = [
+{column_name: movieID, validation_class: UTF8Type}
+{column_name: title, validation_class: UTF8Type}
+{column_name: genres, validation_class: UTF8Type}
+];
+
+SET movies['70']['movieID']='70';
+SET movies['70']['title']='From Dusk Till Dawn (1996)';
+SET movies['70']['genres']='Action|Comedy|Crime|Horror|Thriller';
+SET movies['83']['movieID']='83';
+SET movies['83']['title']='Once Upon a Time When We Were Colored (1995)';
+SET movies['83']['genres']='Drama';
+SET movies['112']['movieID']='112';
+SET movies['112']['title']='Escape from New York (1981)';
+SET movies['112']['genres']='Action|Adventure|Sci-Fi|Thriller' WITH ttl=300;
+
+GET movies['70'];
+LIST movies;
+DEL movies ['83']['genres'];
+DROP COLUMN FAMILY movies;
+
+DESCRIBE ID;

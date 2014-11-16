@@ -48,6 +48,37 @@ Using Hive multi-table insert, insert values from the table you created in Q4 to
 		Before formatting:  Children's|Adventure|Animation
 		After formatting:  Children's, Adventure, & Animation - <ID>
 
+### Cassandra
+
+Part I
+
+- Using Cassandra CLI, write commands to do the following.
+- Create a COLUMN FAMILY for this dataset.
+- Insert the following to the column family created in step 1. Use MovieID as the key.
+	- "70#From Dusk Till Dawn (1996)#Action|Comedy|Crime|Horror|Thriller"
+	- "83#Once Upon a Time When We Were Colored (1995)#Drama"
+	- "112#Escape from New York (1981)#Action|Adventure|Sci-Fi|Thriller" with time to live (ttl) clause after 300 seconds
+- Show the following:
+	- Get the movie name and genre for the movie id 70 ?
+	- Retrieve all rows and columns.
+	- Delete column Genres for the movie id 83.
+	- Drop the column family.
+- Use describe keyspace command with your netid and show content.
+
+Part II
+
+- Using Cassandra CQL3, write commands to do the following.
+- Create a table for this dataset. Use (MovieID) as the Primary Key.
+- Load all records in the dataset to this table.
+- Insert record “1162#New Comedy Movie#Comedy" to the table.
+- Select the tuple which has movie id 1150
+- Delete all rows in the table.
+- Drop the table.
+
+Part III
+
+- Run nodetool command and determine how much unbalanced the cluster is.
+
 ## License
 
 MIT: http://vineetdhanawat.mit-license.org/
