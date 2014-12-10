@@ -1,0 +1,54 @@
+
+// Spark Shell Commands
+val uID = "1"
+val rFile = sc.textFile("hdfs://localhost:9000/q1/ratings.dat")
+val rArray = rFile.toArray
+val ratedList = new scala.collection.mutable.MutableList[String]
+
+	for(i <- 0 until rArray.length){
+		val rateLine = rArray(i).split("::")
+		if(rateLine(0) == uID && rateLine(2) == "4") {
+		ratedList += rateLine(1)
+		}
+	}
+
+// Last Part
+val simMatrix = sc.textFile("hdfs://localhost:9000/q3/part-00000")
+val iArray = simMatrix.toArray
+val itemMap = new scala.collection.mutable.HashMap[String,List[String]].withDefaultValue(Nil)
+
+	for(i <- 0 until iArray.length){
+		val itemLine = iArray(i).split("\\s+")
+		val itemKey = itemLine(0)
+		if(itemLine.length > 1){
+			val commaSplit = itemLine(1).split(",")
+			for( j <- 0 until commaSplit.length){
+				val movieSplit = commaSplit(j).split(":")
+				val movieID = movieSplit(0)
+				itemMap(itemKey) ::= movieID
+			}
+		}
+	}
+
+// Recommendation
+val movie = sc.textFile("hdfs://localhost:9000/q3/movies.dat")
+val movieMap = new scala.collection.mutable.HashMap[String,String]
+val movieArray=movie.toArray
+	
+for(i <- 0 until movieArray.length){
+	val movieLine = movieArray(i).split("::")
+	movieMap(movieLine(0)) = movieLine(1)
+}
+
+
+for(i <- 0 until ratedList.length){
+	val movieRow = ratedList(i)
+	if(itemMap.contains(movie)){
+	println("")
+	print(movieMap(movieRow)+" ====> ")
+		for(i <- 0 until itemMap(movieRow).length){
+			print(movieMap(itemMap(movieRow)(i)) + " ")
+		}
+	println("")
+	}
+}
