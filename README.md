@@ -79,6 +79,21 @@ Part III
 
 - Run nodetool command and determine how much unbalanced the cluster is.
 
+### Spark
+
+Part I Scala
+
+1. Given a input zipcode, find all the user-ids that belongs to that zipcode. You must take the input zipcode in command line.
+2. Find top 10 average rated movies with descending order of rating.
+
+Part II Mahout and Recommendation
+
+- Apply item-based collaborative filtering using mahout’s spark-itemsimilarity. spark-itemsimilarity can be used to create "other people also liked these things" type recommendations.
+- Construct the item-similarity matrix of each movie having rating 4 (use ratings.dat)
+- Using Apache spark interactive shell. Take the user id as input. Now finds all the movies that he rates as 4.
+- Find the movies that match with the user’s rated movies with the key of the item-similarity file.
+- Reference https://mahout.apache.org/users/recommender/intro-cooccurrence-spark.html 
+
 ## License
 
 MIT: http://vineetdhanawat.mit-license.org/

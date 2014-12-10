@@ -1,10 +1,11 @@
+// $../bin/spark-submit --class "Q2" --master local[4] target/scala-2.10.4/simple-project_2.10.4-1.1.jar
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
 
 object Q2 {
   def main(args: Array[String]) {
-    val textFile = "hdfs://localhost:9000/q1/ratings.dat" // Should be some file on your system
+    val textFile = "hdfs://localhost:9000/q2/ratings.dat" // Should be some file on your system
     val conf = new SparkConf().setAppName("Q2")
     val sc = new SparkContext(conf)
     val logData = sc.textFile(textFile)

@@ -1,3 +1,4 @@
+// $../bin/spark-submit --class "Q1" --master local[4] target/scala-2.10.4/simple-project_2.10.4-1.1.jar 94115
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
